@@ -633,9 +633,6 @@ class app_top_block(gr.top_block, Qt.QMainWindow):
         return samp_rate
 
     def set_named_gain(self, gain, name):
-        if self._verbose:
-            print("Trying to set " + name + " gain to:", gain)
-
         gain = self.src.set_gain(gain, name)
         if self._verbose:
             print("Set " + name + " gain to:", gain)
