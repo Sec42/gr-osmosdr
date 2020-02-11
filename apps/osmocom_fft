@@ -637,6 +637,14 @@ class app_top_block(gr.top_block, Qt.QMainWindow):
         if self._verbose:
             print("Set " + name + " gain to:", gain)
 
+        try:
+            if hasattr(self._gw[name].d_widget, 'setValue'):
+                self._gw[name].d_widget.setValue(gain)
+            else:
+                self._gw[name].d_widget.counter.setValue(freq)
+        except (RuntimeError, AttributeError):
+            pass
+
     def set_bandwidth(self, bw):
         if self._verbose:
             print("Trying to set bandwidth to:", bw)
